@@ -1,19 +1,25 @@
-.app {
-  min-height: 100vh;
-  background: rgb(67, 202, 255);
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-  
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
-.tweet {
-  height:300px;
-  width:300px;
-  background: white;
-  border-radius: 20px;
-  display:flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  align-items: center;
 
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.4;
+}
+
+.container {
+  padding: 0 1rem;
+}
+.btn {
+  display: inline-block;
+  border: none;
+  background: #555;
+  color: #fff;
+  padding: 7px 20px;
+  cursor: pointer;
+}
+.btn:hover {
+  background: #666;
 }

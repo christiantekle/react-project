@@ -1,23 +1,57 @@
-import React, { useState } from 'react';
-import Tweet from './tweet.js';
+import React, { Component } from 'react';
+import Header from './components/layout/Header'
+import AddTodo from './components/AddTodo'
+import Todos from './components/Todos'
+
 import "./App.css"
+ 
+class App extends Component {
+  state = {
+  todos: [
+    {
+      id: 1,
+      title: 'Take out the trash',
+      completed: false
+    },
+    {
+      id: 2,
+      title: 'Dinner with family',
+      completed: false
+    },
+    {
+      id: 3,
+      title: 'Meeting with boss',
+      completed: false
+    }
+  ]
+}
 
-function App() {
-  const [users, setUsers] = useState([
-    { name: "Lecrae", messages: "Tell the world" },
-    { name: "TobyMac", messages: "it ain't over yet" },
-    { name: "Denzel", messages: "I walk by faith, not by sight" }
-  ]);
+// Toggle Complete
+  markComplete = (id) => {
+      this.setState({ todos: this.state.todos.map(todo => {
+        if(todo.id === id) {
+          todo.completed = !todo.completed
+        }
+        return todo;
+      }) });
+    }
 
-  return (
-    <div className="app">
-      <Tweet name="Trip Lee" messages="To die is gain" />
-      <Tweet name="Kevin Hart" messages="I can't make this up" />
-      {users.map(user => (
-        <Tweet name={user.name} messages={user.messages} />
-      ))}
-    </div>
-  );
+  //Delete Todo
+  delTodo = (id) => {
+    this.setState({ todos: [...this.state.todos.filter(todo => todo.id !== id)] });
+  }
+  
+  render() {  
+      return (
+      <div className="App">
+        <div className="container">
+            <Header />
+            <AddTodo />
+            <Todos todos={this.state.todos} markComplete={this.markComplete} delTodo={this.delTodo}/>
+        </div>
+       </div> 
+    );
+  }
 }
 
 export default App;
